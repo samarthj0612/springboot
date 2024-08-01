@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -18,12 +19,12 @@ import org.springframework.context.annotation.Configuration;
                 title = "Spring Boot Project",
                 version = "1.0",
                 description = "This project serves as a comprehensive practice for mastering Spring Boot modules, concepts, and fundamental principles. It includes various examples and use cases to understand and implement best practices in Spring Boot development.",
-                termsOfService = "http://springboot.example.com/terms",
                 contact = @Contact(
                         name = "Samarth Jain",
                         email = "samarthj0612@gmail.com",
                         url = "https://www.linkedin.com/in/samarthjain02"
                 ),
+                termsOfService = "http://springboot.example.com/terms",
                 license = @License(
                         name = "Apache 2.0",
                         url = "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -37,6 +38,11 @@ import org.springframework.context.annotation.Configuration;
         ),
         security = {
                 @SecurityRequirement(name = "bearerAuth")
+        },
+        servers = {
+                @Server(url = "${openapi.dev-url}", description = "Development Server"),
+                @Server(url = "${openapi.stage-url}", description = "Staging Server"),
+                @Server(url = "${openapi.prod-url}", description = "Production Server")
         }
 )
 @SecurityScheme(
@@ -47,6 +53,5 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )
-
 public class OpenApiConfig {
 }
