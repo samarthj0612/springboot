@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Main {
+public class MainController {
 
     @Autowired
     TransactionalService transactionalService;
