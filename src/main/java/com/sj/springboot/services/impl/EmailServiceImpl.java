@@ -13,6 +13,8 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    private final String DEFAULT_SENDER_MAIL_ADDRESS = "samarth.dev@gmail.com";
+
     @Override
     public void sendMail(Mail mail) {
         System.out.println("Email: " + mail.toString());
@@ -22,6 +24,7 @@ public class EmailServiceImpl implements EmailService {
             message.setTo(mail.getRecipientsAddress());
             message.setSubject(mail.getSubject());
             message.setText(mail.getContent());
+            message.setFrom(DEFAULT_SENDER_MAIL_ADDRESS);
 
             mailSender.send(message);
         } catch (Exception e){
