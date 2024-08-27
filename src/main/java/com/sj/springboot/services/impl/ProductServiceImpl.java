@@ -14,6 +14,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(String productName, int quantity) {
+        if (productName.isEmpty() || quantity < 0){
+            throw new IllegalArgumentException();
+        }
         Product product = new Product();
         product.setName(productName);
         product.setQuantity(quantity);
